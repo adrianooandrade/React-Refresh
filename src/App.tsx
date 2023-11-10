@@ -1,11 +1,17 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState } from "react";
+import reactLogo from "./assets/react.svg";
+import viteLogo from "/vite.svg";
+import "./App.css";
 
 import GoalList from "./components/GoalList.tsx";
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
+
+  const goalListData = [
+    { id: "1", label: "Finish the Course" },
+    { id: "2", label: "Learn all the main topics" },
+    { id: "2", label: "Learn all the main topics" },
+  ];
 
   return (
     <>
@@ -30,11 +36,11 @@ function App() {
         Click on the Vite and React logos to learn more
       </p>
 
-        <GoalList></GoalList>
-        <GoalList/>
-
+      <h2> Course Goals</h2>
+      <GoalList goals={goalListData}></GoalList>
+      <GoalList goals={goalListData} />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
