@@ -3,15 +3,22 @@ import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 
-import GoalList from "./components/GoalList.tsx";
+import GoalList from "./components/GoalList/GoalList.tsx";
+import NewGoal from "./components/NewGoal/NewGoal.tsx";
 function App() {
   const [count, setCount] = useState(0);
 
-  const goalListData = [
+  let goalListData = [
     { id: "1", label: "Finish the Course" },
     { id: "2", label: "Learn all the main topics" },
-    { id: "2", label: "Learn all the main topics" },
+    { id: "3", label: "Learn all the main topics" },
   ];
+
+  const addNewGoalHandler = (newGoal) => {
+    goalListData = [...goalListData, newGoal];
+
+    console.log(goalListData);
+  };
 
   return (
     <>
@@ -37,8 +44,8 @@ function App() {
       </p>
 
       <h2> Course Goals</h2>
+      <NewGoal onAddGoal={addNewGoalHandler}></NewGoal>
       <GoalList goals={goalListData}></GoalList>
-      <GoalList goals={goalListData} />
     </>
   );
 }
