@@ -8,16 +8,20 @@ import NewGoal from "./components/NewGoal/NewGoal.tsx";
 function App() {
   const [count, setCount] = useState(0);
 
-  let goalListData = [
+  const [courseGoalsData, setCourseGoals] = useState([
     { id: "1", label: "Finish the Course" },
     { id: "2", label: "Learn all the main topics" },
     { id: "3", label: "Learn all the main topics" },
-  ];
+  ]);
 
   const addNewGoalHandler = (newGoal) => {
-    goalListData = [...goalListData, newGoal];
+    // setCourseGoals(courseGoalsData.concat(newGoal));
+    // or (safer and better way of updating using function scheduler guarantees the updates are called in order)
+    setCourseGoals((prevState) => {
+      return prevState.concat(newGoal);
+    });
 
-    console.log(goalListData);
+    console.log(courseGoalsData);
   };
 
   return (
@@ -45,7 +49,7 @@ function App() {
 
       <h2> Course Goals</h2>
       <NewGoal onAddGoal={addNewGoalHandler}></NewGoal>
-      <GoalList goals={goalListData}></GoalList>
+      <GoalList goals={courseGoalsData}></GoalList>
     </>
   );
 }
