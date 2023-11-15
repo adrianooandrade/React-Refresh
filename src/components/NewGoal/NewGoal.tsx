@@ -1,15 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 
 import "./NewGoal.css";
 
 const NewGoal = (props) => {
+  const [textEntered, setTextEntered] = useState("");
+
+  const textChangeHandler = (event) => {
+    setTextEntered(event.target.value);
+  };
   const addGoalHandler = (event) => {
     event.preventDefault();
 
     const newGoal = {
       id: Math.random().toString(),
-      label: "New goal",
+      label: textEntered,
     };
+
+    setTextEntered("");
 
     props.onAddGoal(newGoal);
   };
@@ -17,7 +24,7 @@ const NewGoal = (props) => {
   return (
     <div className="new-goal" onSubmit={addGoalHandler}>
       <form>
-        <input type="text" />
+        <input type="text" value={textEntered} onChange={textChangeHandler} />
         <button type="submit"> Add New Goal</button>
       </form>
     </div>
